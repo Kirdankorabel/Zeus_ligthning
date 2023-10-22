@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class AbilityInfo : MonoBehaviour
+[Serializable]
+public class AbilityInfo
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Sprite _sprite;
+    [SerializeField] private string _name;
+    [SerializeField] private int _priceFor10;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Sprite Sprite => _sprite;
+    public string Name => _name;
+    public int PriceFor10 => _priceFor10;
 }

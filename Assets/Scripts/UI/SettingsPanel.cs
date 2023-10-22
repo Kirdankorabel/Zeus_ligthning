@@ -13,7 +13,7 @@ public class SettingsPanel : MonoBehaviour
     {
         _settingsButton.onClick.AddListener(OpenSettingsPanel);
         _closeButton.onClick.AddListener(CloseSettingsPanel);
-        GameController.Instance.OnTargetTouch += () => _audioSource.Play();
+        GameController.Instance.OnTargetTouch += (value) => _audioSource.Play();
         _volumeSlider.onValueChanged.AddListener((value) => _audioSource.volume = value);
         gameObject.SetActive(false);
         _volumeSlider.value = PlayerPrefs.GetFloat(_prefsName, 1);

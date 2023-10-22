@@ -2,20 +2,21 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Ability : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] private Sprite _sprite;
     [SerializeField] private TMP_Text _countText;
-    [SerializeField] private string _name;
+    [SerializeField] private Image _icon;
     [SerializeField] private int _count;
-    [SerializeField] private int _priceFor10;
+    [SerializeField] private AbilityInfo _abilityInfo;
 
     public event Action<Ability> OnAbilitySelected;
     public event Action<Ability> OnAbilitiesEnded;
 
-    public Sprite Sprite => _sprite;
-    public string Name => _name;
+    public Sprite Sprite => _abilityInfo.Sprite;
+    public string Name => _abilityInfo.Name;
+    public int PriceFor10 => _abilityInfo.PriceFor10;
     public int Count
     {
         get { return _count; } 
@@ -27,11 +28,11 @@ public class Ability : MonoBehaviour, IPointerEnterHandler
         }
     }
 
-    public int PriceFor10 => _priceFor10;
 
     private void Start()
     {
         Count = PlayerPrefs.GetInt(Name, 5);
+        _icon.sprite = Sprite;
     }
 
     public virtual void Use(Column column)

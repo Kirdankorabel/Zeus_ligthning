@@ -15,7 +15,8 @@ public class Account : Singleton<Account>
         set
         { 
             _gameCurrencyCount = value;
-            PlayerPrefs.SetInt(_playerPrefName, 0);
+            _gameCurrencyCounttext.text = value.ToString(); 
+            PlayerPrefs.SetInt(_playerPrefName, _gameCurrencyCount);
         }
     }
 
@@ -27,5 +28,6 @@ public class Account : Singleton<Account>
     private void Start()
     {
         _abilitiesShop.OnAbilityPurchasing += (value) => GameCurrencyCount -= value;
+        Coin.OnWalletHitted += () => GameCurrencyCount++;
     }
 }

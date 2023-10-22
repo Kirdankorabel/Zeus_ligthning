@@ -8,6 +8,7 @@ public class AbilitiesController : MonoBehaviour
 {
     [SerializeField] private GameController _gameController;
     [SerializeField] private List<Ability> _abilities;
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private Column[] _columns;
     [SerializeField] private Image _abilityImage;
 
@@ -30,7 +31,7 @@ public class AbilitiesController : MonoBehaviour
 
     private void SelectAbility(Ability ability)
     {
-        if (_gameController.IsDragged)
+        if (_gameController.IsDragged || IsDragged)
             return;
         _ability = ability;
         _abilityImage.sprite = ability.Sprite;
@@ -55,7 +56,7 @@ public class AbilitiesController : MonoBehaviour
 
         while (Input.GetMouseButton(0))
         {
-            _abilityImage.transform.localPosition = Input.mousePosition - new Vector3(Screen.width, Screen.height) / 2f;
+            _abilityImage.transform.localPosition = (Input.mousePosition - new Vector3(Screen.width, Screen.height) / 2f) / _canvas.scaleFactor;
             yield return null;
         }
         _abilityImage.gameObject.SetActive(false);

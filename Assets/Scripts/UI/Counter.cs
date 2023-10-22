@@ -45,7 +45,7 @@ public class Counter : Singleton<Counter>
 
     void Start()
     {
-        GameController.Instance.OnTargetTouch += () => Increase();
+        GameController.Instance.OnTargetTouch += (value) => Increase();
         RestartPanel.Instance.OnRestart += () => Count = 0;
     }
 
